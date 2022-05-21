@@ -40,7 +40,7 @@ dependencies:
 #  shared_preferences: ^2.0.15
 #  app_tracking_transparency: ^2.0.2+4
 #  flutter_native_splash: ^2.2.0+1
-#  google_mobile_ads: ^1.2.0
+  google_mobile_ads: ^1.2.0
 
 
 
