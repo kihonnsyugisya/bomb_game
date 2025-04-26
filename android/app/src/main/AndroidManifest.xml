@@ -1,6 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kihonsyugisya.bomb_game">
-   <application
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <queries>
+        <!-- If your app opens https URLs -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+    <application
         android:label="bomb_game"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

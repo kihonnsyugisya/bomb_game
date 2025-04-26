@@ -26,6 +26,25 @@ class OriginalThemeColor {
   static HexColor other1 = HexColor('#F44336');
   static HexColor other2 = HexColor('#C62828');
 
+  static HexColor dangerous1 = HexColor('#FEC726');
+  static HexColor dangerous2 = HexColor('#FEBB49');
+  static HexColor background = HexColor('#9FA0A2');
+  static HexColor emergency1 = HexColor('#E5302A');
+
+  static HexColor emergency11 = HexColor('#E83428');
+  static HexColor emergency12 = HexColor('#CB2A26');
+
+
+  static HexColor emergency2 = HexColor('#E84946');
+  static HexColor emergency3 = HexColor('#251E13');
+  static HexColor emergency4 = HexColor('#DF2A20');
+  static HexColor emergency5 = HexColor('#C2191E');
+  static HexColor call1 = HexColor('#F3F2EE');
+  static HexColor call2 = HexColor('#B5AFA9');
+
+
+
+
   static Color transparent = Colors.transparent;
 }
 

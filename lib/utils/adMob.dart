@@ -13,20 +13,20 @@ class AdMob{
   static int interstitialAdCounter = 0;
   static bool isShowInterstitialAd(){
     // if(interstitialAdCounter % 2 == 0){ 　試験的に表示回数を変更
-    if(interstitialAdCounter != 1 && interstitialAdCounter %3 != 0){
+    if(interstitialAdCounter %2 == 0){
       return true;
     }else{
       return false;
     }
 
   }
-  static bool isTest = true;
+  static bool isTest = false;
   static Map<String, Map<String, String>> productionAdIds = {
-    // 'ios': {
-    //   'banner': 'ca-app-pub-3957084734439209/5221804800',
-    //   'interstitial': 'ca-app-pub-3957084734439209/1052831830',
-    //   'reward': 'ca-app-pub-3957084734439209/4686677288'
-    // },
+    'ios': {
+      'banner': 'ca-app-pub-3957084734439209/1877707155',
+      'interstitial': 'ca-app-pub-3957084734439209/7243119440',
+      'reward': 'ca-app-pub-3957084734439209/5355322707'
+    },
     // 'android': {
     //   'banner': 'ca-app-pub-3957084734439209/2587127550',
     //   'interstitial': 'ca-app-pub-3957084734439209/8960964215',

@@ -30,4 +30,12 @@ class OriginalThemeFont{
 
   static TextStyle moderateFont = TextStyle(fontSize: 14,fontWeight: FontWeight.bold,fontFamily: 'Hiragino Kaku Gothic ProN',color: OriginalThemeColor.black);
 
+  static TextStyle popFont = GoogleFonts.concertOne(textStyle: TextStyle(fontSize: 32,fontWeight: FontWeight.w500,color: OriginalThemeColor.dangerous2));
+  static TextStyle panasonicFont = GoogleFonts.concertOne(textStyle: TextStyle(fontSize: 22,fontWeight: FontWeight.w500,color: OriginalThemeColor.white));
+
+
+  // ボムゲームで使用したフォント
+  static TextStyle resultFont = GoogleFonts.dotGothic16(textStyle: TextStyle(fontSize: 32,fontWeight: FontWeight.w500,color: OriginalThemeColor.black));
+  static TextStyle appBarFont = GoogleFonts.dotGothic16(textStyle: TextStyle(fontSize: 18,fontWeight: FontWeight.w500,color: OriginalThemeColor.black));
+  static TextStyle openPunishmentButtonFont = GoogleFonts.dotGothic16(textStyle: TextStyle(fontSize: 18,fontWeight: FontWeight.w500,color: OriginalThemeColor.black));
 }
