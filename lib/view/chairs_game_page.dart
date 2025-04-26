@@ -38,8 +38,8 @@ class _ChairsGamePageState extends State<ChairsGamePage> {
 
   Future<void>? stopTimer(){
     timer = Timer(Duration(seconds: Setting.stopTime + 5),()async{
-      if(playerState == PlayerState.PLAYING || playerState == PlayerState.COMPLETED){
-        await AudioPlayers.audioPlayer.pause();
+      if(playerState == PlayerState.playing || playerState == PlayerState.completed){
+        await AudioPlayers.pause();
         print('止めるぜ');
       }else{
         print('止めれねぇ');
@@ -80,36 +80,33 @@ class _ChairsGamePageState extends State<ChairsGamePage> {
   // });
 
 
-  void buttonFunction(){
-    if(SharedPreference().isVibration){
-      setState(() {
-        HapticFeedback.mediumImpact();
-      });
+  void buttonFunction() async {
+    if (SharedPreference().isVibration) {
+      HapticFeedback.mediumImpact();
     }
-      Setting.stopTime = Random().nextInt(SharedPreference().myPitch);
-      print(Setting.stopTime);
 
-      if(AudioPlayers.playerState == PlayerState.PAUSED){
-        AudioPlayers.audioPlayer.resume();
-        stopTimer();
-        if(timer != null){
-          print(timer!.isActive);
-        }
-      }else{
-        AudioPlayers.playLocal(SharedPreference().selectAudio);
-        stopTimer();
-        if(timer != null){
-          print(timer!.isActive);
-        }
+    Setting.stopTime = Random().nextInt(SharedPreference().myPitch);
+    print('stopTime: ${Setting.stopTime}');
+
+    final state = AudioPlayers.playerState;
+
+    if (state == PlayerState.paused) {
+      await AudioPlayers.resume();
+      stopTimer();
+      if (timer != null) {
+        print(timer!.isActive);
       }
+    } else {
+      await AudioPlayers.playAsset(SharedPreference().selectAudio);
+      stopTimer();
+      if (timer != null) {
+        print(timer!.isActive);
+      }
+    }
 
-      // Timer(Duration(seconds: Setting.stopTime + 5), ()async{
-      //   if(AudioPlayers.playerState == PlayerState.PLAYING || AudioPlayers.playerState == PlayerState.COMPLETED){
-      //     await AudioPlayers.audioPlayer.pause();
-      //   }
-      // });
-      print('stop');
+    print('stop');
   }
+
 
   Widget choseButton(){
     List<Widget> buttons = [
@@ -141,12 +138,12 @@ class _ChairsGamePageState extends State<ChairsGamePage> {
     Setting.stopTime = Random().nextInt(SharedPreference().myPitch);
     print(Setting.stopTime);
     SharedPreference().getVoice;
-    audioStreamers =
-    AudioPlayers.audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
+    audioStreamers = AudioPlayers.onPlayerStateChanged.listen((PlayerState state) {
       playerState = state;
       AudioPlayers.playerState = state;
       print(playerState);
-      if(mounted && AudioPlayers.playerState == PlayerState.PLAYING){
+
+      if (mounted && AudioPlayers.playerState == PlayerState.playing) {
         setState(() {
           isIgnore = true;
           text = 'スタート！';
@@ -154,32 +151,35 @@ class _ChairsGamePageState extends State<ChairsGamePage> {
           print(text);
           print('rocking');
         });
-      }else if(mounted && AudioPlayers.playerState == PlayerState.STOPPED){
+      } else if (mounted && AudioPlayers.playerState == PlayerState.stopped) {
         setState(() {
           isIgnore = false;
-          if(textTimer != null){
+          if (textTimer != null) {
             textTimer!.cancel();
           }
           print('タイマーキャンセル');
           text = 'ストップ！';
         });
         print('un rocking');
-      }else if(mounted && AudioPlayers.playerState == PlayerState.PAUSED){
+      } else if (mounted && AudioPlayers.playerState == PlayerState.paused) {
         setState(() {
           isIgnore = false;
-          if(textTimer != null){
+          if (textTimer != null) {
             textTimer!.cancel();
           }
           print('タイマーキャンセル');
           text = 'ストップ！';
         });
-        Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.topToBottom, child: ResultPage()));
+        Navigator.pushReplacement(context, PageTransition(
+            type: PageTransitionType.topToBottom,
+            child: ResultPage()
+        ));
         print('tootta');
-
-      }else{
+      } else {
         print('読み込めんかった');
       }
     });
+
     super.initState();
   }
 
@@ -195,8 +195,8 @@ class _ChairsGamePageState extends State<ChairsGamePage> {
     if(textTimer != null){
       textTimer!.cancel();
     }
-    if(playerState == PlayerState.PLAYING){
-      AudioPlayers.audioPlayer.stop();
+    if(playerState == PlayerState.playing){
+      AudioPlayers.stop();
     }
     if(audioStreamers != null){
       audioStreamers!.cancel();
@@ -219,8 +219,8 @@ class _ChairsGamePageState extends State<ChairsGamePage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: ()async{
-            if(playerState == PlayerState.PLAYING){
-              await AudioPlayers.audioPlayer.stop();
+            if(playerState == PlayerState.playing){
+              await AudioPlayers.stop();
               print('音楽止めてから移動しなー');
             }
             // ignore: use_build_context_synchronously

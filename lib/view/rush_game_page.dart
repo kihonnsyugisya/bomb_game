@@ -53,7 +53,7 @@ class _RushGamePageState extends State<RushGamePage> {
 
   void buttonFunction(){
     startMinutes();
-    AudioPlayers.audioPlay(fileName: SharedPreference().selectVoice);
+    AudioPlayers.playAsset(SharedPreference().selectVoice);
     setState(() {
       counter++;
     });

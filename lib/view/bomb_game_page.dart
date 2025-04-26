@@ -49,8 +49,8 @@ class _BombGamePageState extends State<BombGamePage> {
     await Future.delayed(Duration(seconds: seconds));
   }
 
-  void buttonFunction(){
-    AudioPlayers.audioPlay(fileName: SharedPreference().selectVoice);
+  void buttonFunction() async {
+    await AudioPlayers.playAsset(SharedPreference().selectVoice);
     counterStreamer.sink.add(1);
   }
 

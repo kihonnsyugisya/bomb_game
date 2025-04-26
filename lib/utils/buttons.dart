@@ -53,11 +53,11 @@ class Buttons{
         child: ElevatedButton(
           child: Text(
             buttonText,
-            style: OriginalThemeFont.modeFont
+            style: OriginalThemeFont.modeFont,
           ),
           style: ElevatedButton.styleFrom(
-            primary: color ?? OriginalThemeColor.themeSubColor,
-            onPrimary: Colors.black,
+            backgroundColor: color ?? OriginalThemeColor.themeSubColor, // primary -> backgroundColor
+            foregroundColor: Colors.black, // onPrimary -> foregroundColor
           ),
           onPressed: page,
         ),
@@ -124,16 +124,27 @@ class Buttons{
             ],
           ),
           child: Center(
-            child: AnimatedButton(
-              color: Colors.redAccent.shade700,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.redAccent.shade700,
+                shape: BoxShape.circle, // 円形にする
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3), // 影の位置調整
+                  ),
+                ],
+              ),
               height: 150,
               width: 150,
-              shape: BoxShape.circle,
-              shadowDegree: ShadowDegree.dark,
-              onPressed: function,
-              child: Text(
-                'PUSH',
-                style: OriginalThemeFont.popFont
+              child: MaterialButton(
+                onPressed: function,
+                child: Text(
+                  'PUSH',
+                  style: OriginalThemeFont.popFont,
+                ),
               ),
             ),
           ),
@@ -187,7 +198,7 @@ class Buttons{
                   color: OriginalThemeColor.emergency3,
                   height: 120,
                   width: 120,
-                  shape: BoxShape.circle,
+                  // shape: BoxShape.circle,
                   shadowDegree: ShadowDegree.dark,
                   onPressed: function,
                   child: Container(
@@ -279,7 +290,7 @@ class Buttons{
                       color: OriginalThemeColor.emergency3,
                       height: 120,
                       width: 120,
-                      shape: BoxShape.circle,
+                      // shape: BoxShape.circle,
                       shadowDegree: ShadowDegree.dark,
                       onPressed: function,
                       child: Center(

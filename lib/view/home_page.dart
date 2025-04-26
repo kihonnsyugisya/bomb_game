@@ -80,10 +80,11 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  buttonFunction(){
+  Future<void> buttonFunction() async {
     counterStreamer.sink.add(1);
-    AudioPlayers.audioPlay(fileName: SharedPreference().selectVoice);
+    await AudioPlayers.playAsset(SharedPreference().selectVoice);
   }
+
 
 
   @override

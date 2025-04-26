@@ -105,14 +105,14 @@ class _PlayingPageState extends State<PlayingPage> {
                   });
                   Timer(Duration(seconds: 3), () => print('時間が経過しました！'));
                 // 　再生中に押は再度押せないようにしたいが、なぜかawaitが聞かないので曲が鳴り止む前に、unrokedになってしまう。
-                  Timer(Duration(seconds: Setting.stopTime + 5), () async => await AudioPlayers.audioPlayer.stop());
+                  Timer(Duration(seconds: Setting.stopTime + 5), () async => await AudioPlayers.stop());
                   setState(() {
                     isIgnore = false;
                     print('unrocked');
                   });
                   print('stop');
                 }else if(Setting.isBombGame){
-                  AudioPlayers.audioPlay(fileName: SharedPreference().selectVoice);
+                  await AudioPlayers.playAsset(SharedPreference().selectVoice);
                   counter ++;
                   print(counter);
                   if(counter == Setting.stopTime){
@@ -120,7 +120,7 @@ class _PlayingPageState extends State<PlayingPage> {
                   }
                 }else{
                   // rushgameの関数を記入
-                  AudioPlayers.audioPlay(fileName: SharedPreference().selectVoice);
+                  await AudioPlayers.playAsset(SharedPreference().selectVoice);
                 }
               }),
             ),

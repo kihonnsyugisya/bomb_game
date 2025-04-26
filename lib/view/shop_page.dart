@@ -23,8 +23,8 @@ class _ShopPageState extends State<ShopPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: ()async{
-            if(AudioPlayers.playerState == PlayerState.PLAYING){
-              await AudioPlayers.audioPlayer.stop();
+            if(AudioPlayers.playerState == PlayerState.playing){
+              await AudioPlayers.stop();
               print('音楽止めてから移動しなー');
             }
             Navigator.pushReplacement(context, PageTransition(type: PageTransitionType.fade, child: const SettingPage()));

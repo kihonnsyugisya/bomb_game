@@ -127,6 +127,7 @@ class _VoiceSelectPageState extends State<VoiceSelectPage> {
                               null;
                             }else{
                               AudioPlayers.audioPlay(fileName: list[index].voiceName);
+
                             }
                           },
                           trailing: lock
